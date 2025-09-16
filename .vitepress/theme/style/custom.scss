@@ -1,0 +1,98 @@
+:root {
+    --vp-home-hero-name-color: transparent;
+    --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #bd34fe, #41d1ff);
+
+    --vp-c-brand-soft: rgba(74, 108, 247, 0.3);
+}
+
+u {
+    text-decoration: underline;
+
+    /* 下划线距离文字的距离 */
+    text-underline-offset: 0.3em;
+}
+
+%template_a {
+    position: relative;
+    text-decoration: none;
+    display: inline-block;
+
+    &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 2px;
+        background-color: var(--vp-c-brand-soft);
+        width: 80%;
+        transition: all 0.3s ease;
+    }
+
+    &:hover::before {
+        background-color: var(--vp-c-brand-3);
+        width: 100%;
+    }
+}
+
+a[href^=http] {
+    @extend %template_a;
+}
+
+// 预览链接不应应用该样式
+a[href^='./']:not(.VPNolebaseInlinePreviewLinkPopupOpenBtn) {
+    @extend %template_a;
+
+    &::before {
+        left: auto;
+        right: 0;
+    }
+}
+
+/* 修正添加socialLink后 github 图标错位问题 */
+.VPSocialLinks.VPNavBarSocialLinks.social-links {
+    margin-right: 0; // 由于默认的 margin-right 小于 0 导致的错位
+}
+
+:root {
+
+    /* 首页下滑后导航透明 */
+    .VPNavBar:not(.has-sidebar):not(.home.top) {
+        background-color: rgba(255, 255, 255, 0);
+        backdrop-filter: blur(10px);
+    }
+
+    /* 搜索框透明 */
+    .DocSearch-Button {
+        background-color: rgba(255, 255, 255, 0);
+        backdrop-filter: blur(10px);
+    }
+
+    /* Feature透明 */
+    .VPFeature {
+        border: none;
+        box-shadow: 0 10px 30px 0 rgb(0 0 0 / 15%);
+        background-color: transparent;
+    }
+
+    /* 文档页侧边栏顶部透明 */
+    .curtain {
+        background-color: rgba(255, 255, 255, 0);
+        backdrop-filter: blur(10px);
+    }
+
+    @media (min-width: 960px) {
+
+        /* 文档页导航中间透明 */
+        .VPNavBar:not(.home.top) .content-body {
+            background-color: rgba(255, 255, 255, 0);
+            backdrop-filter: blur(10px);
+        }
+    }
+
+    /* 移动端大纲栏透明 */
+    .VPLocalNav {
+        background-color: rgba(255, 255, 255, 0);
+        backdrop-filter: blur(10px);
+    }
+
+}
